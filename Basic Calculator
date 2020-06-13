@@ -1,0 +1,108 @@
+from tkinter import *
+
+
+# 4) Building calculator app based on what we've learned
+
+# 4.1) Creating a window
+root = Tk()
+root.title("Simple Calculator") ## Changes title of program
+
+## Entry at top
+e = Entry(root, width = 27)
+e.grid(row = 0, column = 1, columnspan = 3)
+
+# 4.2) Functions
+def button_click(number):
+    #e.delete(0, END) ## deletes whatever is in the box. Find out what END is
+    current = e.get() ## Makes sure number sequence is not reversed
+    e.delete(0, END) ## Try removing and see what happens
+    e.insert(0, str(current) + str(number))
+
+def button_clear():
+    e.delete(0,END)
+
+def button_plus():
+    global sign
+    sign = "plus"
+    first_no = e.get()
+    global f_num ## saves first number into global memory so it can be used later
+    f_num = int(first_no)
+    e.delete(0,END)
+
+def button_minus():
+    global sign
+    sign = "minus"
+    first_no = e.get()
+    global f_num ## saves first number into global memory so it can be used later
+    f_num = int(first_no)
+    e.delete(0,END)
+
+def button_multiply():
+    global sign
+    sign = "multiply"
+    first_no = e.get()
+    global f_num ## saves first number into global memory so it can be used later
+    f_num = int(first_no)
+    e.delete(0,END)
+
+def button_divide():
+    global sign
+    sign = "divide"
+    first_no = e.get()
+    global f_num ## saves first number into global memory so it can be used later
+    f_num = int(first_no)
+    e.delete(0,END)
+
+def button_equal():
+    second_no = e.get()
+    s_num = int(second_no)
+    e.delete(0,END)
+    if sign == "plus": 
+        e.insert(0, f_num + s_num)
+    if sign == "minus":
+        e.insert(0, f_num - s_num)
+    if sign == "multiply":
+        e.insert(0, f_num * s_num)
+    if sign == "divide":
+        e.insert(0, f_num / s_num)
+
+# 4.3) Creating the outline of a calculator
+
+## Buttons digits in a 4x4 grid
+Digit_7 = Button(root, text = "7", padx=20, pady=10, command=lambda: button_click(7))
+Digit_7.grid(row = 1, column = 0)
+Digit_8 = Button(root, text = "8", padx=20, pady=10, command=lambda: button_click(8))
+Digit_8.grid(row = 1, column = 1, sticky = W)
+Digit_9 = Button(root, text = "9", padx=20, pady=10, command=lambda: button_click(9))
+Digit_9.grid(row = 1, column = 2, sticky = W)
+Digit_4 = Button(root, text = "4", padx=20, pady=10, command=lambda: button_click(4))
+Digit_4.grid(row = 2, column = 0)
+Digit_5 = Button(root, text = "5", padx=20, pady=10, command=lambda: button_click(5))
+Digit_5.grid(row = 2, column = 1, sticky = W)
+Digit_6 = Button(root, text = "6", padx=20, pady=10, command=lambda: button_click(6))
+Digit_6.grid(row = 2, column = 2, sticky = W)
+Digit_1 = Button(root, text = "1", padx=20, pady=10, command=lambda: button_click(1))
+Digit_1.grid(row = 3, column = 0)
+Digit_2 = Button(root, text = "2", padx=20, pady=10, command=lambda: button_click(2))
+Digit_2.grid(row = 3, column = 1, sticky = W)
+Digit_3 = Button(root, text = "3", padx=20, pady=10, command=lambda: button_click(3))
+Digit_3.grid(row = 3, column = 2, sticky = W)
+Digit_0 = Button(root, text = "0", padx=20, pady=10, command=lambda: button_click(0))
+Digit_0.grid(row = 4, column = 0)
+
+equalSign = Button(root, text = "=", padx=18, pady=10, command=lambda: button_equal())
+equalSign.grid(row = 4, column = 1)
+empty = Button(root, text = " ", state = DISABLED, padx=21.5, pady=10)
+empty.grid(row = 4, column = 2)
+plusSign = Button(root, text = "+", padx=18, pady=10, command=lambda: button_plus())
+plusSign.grid(row = 1, column = 3, sticky = W)
+minusSign = Button(root, text = "-", padx=20, pady=10, command=lambda: button_minus())
+minusSign.grid(row = 2, column = 3, sticky = W)
+multiplySign = Button(root, text = "*", padx=20, pady=10, command=lambda: button_multiply())
+multiplySign.grid(row = 3, column = 3, sticky = W)
+divideSign = Button(root, text = "/", padx=20, pady=10, command=lambda: button_divide())
+divideSign.grid(row = 4, column = 3, sticky = W)
+clear = Button(root, text = "C", padx=20, command=lambda: button_clear())
+clear.grid(row = 0, column = 0, sticky = W)
+
+
